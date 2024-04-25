@@ -1,26 +1,36 @@
 return {
-    "nvim-telescope/telescope.nvim",
+	"nvim-telescope/telescope.nvim",
 
-    dependencies = {
-        "nvim-lua/plenary.nvim"
-    },
-
-    config = function()
-        require('telescope').setup({})
-
-        local builtin = require('telescope.builtin')
-        vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-        vim.keymap.set('n', '<leader>fg', builtin.git_files, {})
-	vim.keymap.set('n', '<leader>fs', builtin.live_grep, {})
-	vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-        vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-        vim.keymap.set('n', '<leader>fws', function()
-            local word = vim.fn.expand("<cword>")
-            builtin.grep_string({ search = word })
-        end)
-        vim.keymap.set('n', '<leader>fWs', function()
-            local word = vim.fn.expand("<cWORD>")
-            builtin.grep_string({ search = word })
-        end)
-    end
+	dependencies = {
+		"nvim-lua/plenary.nvim"
+	},
+	keys = {
+		{ "<leader>ff", function() require("telescope.builtin").find_files() end, desc = "Harpoon to file 1", },
+		{ "<leader>fg", function() require("telescope.builtin").git_files() end,  desc = "Harpoon to file 1", },
+		{ "<leader>fs", function() require("telescope.builtin").live_grep() end,  desc = "Harpoon to file 1", },
+		{ "<leader>fb", function() require("telescope.builtin").bufffers() end,   desc = "Harpoon to file 1", },
+		{ "<leader>fh", function() require("telescope.builtin").help_tags() end,  desc = "Harpoon to file 1", },
+		{
+			"<leader>fws",
+			function()
+				local word = vim.fn.expand("<cword>")
+				require("telescope.builtin").grep_string({ search = word })
+			end,
+		},
+		{
+			"<leader>fws",
+			function()
+				local word = vim.fn.expand("<cWORD>")
+				require("telescope.builtin").grep_string({ search = word })
+			end,
+		},
+        -- LSP Keys for Telescope
+        {"gd", function() require("telescope.builtin").lsp_definitions(require('telescope.themes').get_ivy({})) end },
+        {"gt", function() require("telescope.builtin").lsp_type_definitions(require('telescope.themes').get_ivy({})) end },
+        {"gr", function() require("telescope.builtin").lsp_references(require('telescope.themes').get_ivy({})) end },
+        {"gx", function() require("telescope.builtin").diagnostics(require('telescope.themes').get_ivy({})) end},
+        {"gf", function() require("telescope.builtin").lsp_document_symbols(require('telescope.themes').get_ivy({})) end},
+        {"gw", function() require("telescope.builtin").lsp_workspace_symbosl(require('telescope.themes').get_ivy({})) end},
+        {"gi", function() require("telescope.builtin").lsp_implementations(require('telescope.themes').get_ivy({})) end},
+	},
 }

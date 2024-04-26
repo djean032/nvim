@@ -15,6 +15,7 @@ return {
 
     config = function()
         local cmp = require('cmp')
+        require("luasnip.loaders.from_vscode").lazy_load()
         local cmp_lsp = require("cmp_nvim_lsp")
         local capabilities = vim.tbl_deep_extend(
             "force",
@@ -49,6 +50,10 @@ return {
                 expand = function(args)
                     require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
                 end,
+            },
+            window = {
+                completion = cmp.config.window.bordered(),
+                documentation = cmp.config.window.bordered(),
             },
             mapping = cmp.mapping.preset.insert({
                 ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),

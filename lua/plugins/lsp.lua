@@ -15,7 +15,6 @@ return {
 
     config = function()
         local cmp = require('cmp')
-        require("luasnip.loaders.from_vscode").lazy_load()
         local cmp_lsp = require("cmp_nvim_lsp")
         local capabilities = vim.tbl_deep_extend(
             "force",
@@ -28,14 +27,12 @@ return {
         require("mason-lspconfig").setup({
             ensure_installed = {
                 "lua_ls",
-                "rust_analyzer",
                 "gopls",
-		"pyright",
-		"clangd",
+                "pyright",
+                "clangd",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
-
                     require("lspconfig")[server_name].setup {
                         capabilities = capabilities
                     }
@@ -51,10 +48,6 @@ return {
                     require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
                 end,
             },
-            window = {
-                completion = cmp.config.window.bordered(),
-                documentation = cmp.config.window.bordered(),
-            },
             mapping = cmp.mapping.preset.insert({
                 ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
                 ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
@@ -62,11 +55,10 @@ return {
                 ["<C-Space>"] = cmp.mapping.complete(),
             }),
             sources = cmp.config.sources({
-                { name = 'nvim_lsp' },
-                { name = 'luasnip' }, -- For luasnip users.
-            }, {
-                { name = 'buffer' },
-            })
+                    { name = 'luasnip', option = { use_show_condition = false } }, -- For luasnip users.
+                    { name = 'nvim_lsp' },
+                    { name = 'buffer' },
+                })
         })
 
         vim.diagnostic.config({

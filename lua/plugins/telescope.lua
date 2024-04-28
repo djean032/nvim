@@ -18,7 +18,7 @@ return {
 			end,
 		},
 		{
-			"<leader>fws",
+			"<leader>fWs",
 			function()
 				local word = vim.fn.expand("<cWORD>")
 				require("telescope.builtin").grep_string({ search = word })

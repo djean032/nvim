@@ -29,7 +29,6 @@ return {
                 "lua_ls",
                 "gopls",
                 "pyright",
-                "clangd",
             },
             handlers = {
                 function(server_name) -- default handler (optional)

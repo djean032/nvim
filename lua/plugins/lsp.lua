@@ -12,6 +12,13 @@ return {
         "saadparwaiz1/cmp_luasnip",
         "j-hui/fidget.nvim",
     },
+    opts = {
+        servers = {
+            clangd = {
+                mason = false,
+            }
+        }
+    },
 
     config = function()
         local cmp = require('cmp')
@@ -29,11 +36,15 @@ return {
                 "lua_ls",
                 "gopls",
                 "pyright",
+                "eslint",
+
             },
             handlers = {
                 function(server_name) -- default handler (optional)
                     require("lspconfig")[server_name].setup {
                         capabilities = capabilities
+                    }
+                    require("lspconfig").clangd.setup {
                     }
                 end,
             }
@@ -54,10 +65,10 @@ return {
                 ["<C-Space>"] = cmp.mapping.complete(),
             }),
             sources = cmp.config.sources({
-                    { name = 'luasnip', option = { use_show_condition = false } }, -- For luasnip users.
-                    { name = 'nvim_lsp' },
-                    { name = 'buffer' },
-                })
+                { name = 'luasnip', option = { use_show_condition = false } }, -- For luasnip users.
+                { name = 'nvim_lsp' },
+                { name = 'buffer' },
+            })
         })
 
         vim.diagnostic.config({

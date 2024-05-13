@@ -5,11 +5,11 @@ return {
 		"nvim-lua/plenary.nvim"
 	},
 	keys = {
-		{ "<leader>ff", function() require("telescope.builtin").find_files() end, desc = "Harpoon to file 1", },
-		{ "<leader>fg", function() require("telescope.builtin").git_files() end,  desc = "Harpoon to file 1", },
-		{ "<leader>fs", function() require("telescope.builtin").live_grep() end,  desc = "Harpoon to file 1", },
-		{ "<leader>fb", function() require("telescope.builtin").bufffers() end,   desc = "Harpoon to file 1", },
-		{ "<leader>fh", function() require("telescope.builtin").help_tags() end,  desc = "Harpoon to file 1", },
+		{ "<leader>ff", function() require("telescope.builtin").find_files({hidden=true}) end, desc = "Harpoon to file 1", },
+		{ "<leader>fg", function() require("telescope.builtin").git_files({hidden=true}) end,  desc = "Harpoon to file 1", },
+		{ "<leader>fs", function() require("telescope.builtin").live_grep({hidden=true}) end,  desc = "Harpoon to file 1", },
+		{ "<leader>fb", function() require("telescope.builtin").buffers({hidden=true}) end,   desc = "Harpoon to file 1", },
+		{ "<leader>fh", function() require("telescope.builtin").help_tags({hidden=true}) end,  desc = "Harpoon to file 1", },
 		{
 			"<leader>fws",
 			function()

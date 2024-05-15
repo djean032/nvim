@@ -34,6 +34,7 @@ return { -- Autoformat
             javascript = { "prettier" },
             svelte = { "prettier" },
             html = { "prettier" },
+            css = { "prettier" },
         },
     },
 }

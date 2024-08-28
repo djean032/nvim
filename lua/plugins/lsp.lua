@@ -37,6 +37,7 @@ return {
                 "gopls",
                 "pyright",
                 "eslint",
+                "fortls",
 
             },
             handlers = {
@@ -45,6 +46,15 @@ return {
                         capabilities = capabilities
                     }
                     require("lspconfig").clangd.setup {
+                    }
+                    require("lspconfig").fortls.setup {
+                        cmd = {
+                            'fortls',
+                            '--lowercase_intrinsics',
+                            '--hover_signature',
+                            '--hover_language=fortran',
+                            '--use_signature_help'
+                        }
                     }
                 end,
             }

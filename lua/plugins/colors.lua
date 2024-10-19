@@ -1,6 +1,6 @@
 return {
     {
-        'ellisonleao/gruvbox.nvim',
+        "nyoom-engineering/oxocarbon.nvim",
         lazy = false,
         priority = 1000,
     },

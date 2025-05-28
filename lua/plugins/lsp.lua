@@ -58,6 +58,7 @@ return {
         })
         require'lspconfig'.gopls.setup{}
         require'lspconfig'.zls.setup{}
+        require'lspconfig'.clangd.setup{}
 
 
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
